@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FrontEnd.Models.ServicioViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+<br ></br>
+<h1>Menu de Servicios</h1>
+<br ></br>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Imagen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.IdServicio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Imagen)</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.IdServicio })" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("Details", new { id = item.IdServicio })" class="btn btn-info">Details</a>
+                        <a href="@Url.Action("Delete", new { id = item.IdServicio })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
