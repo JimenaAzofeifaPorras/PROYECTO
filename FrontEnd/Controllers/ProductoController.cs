@@ -1,10 +1,12 @@
 ﻿using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class ProductoController : Controller
     {
         IProductoHelper ProductoHelper;
@@ -16,7 +18,7 @@ namespace FrontEnd.Controllers
 
 
         // GET: ProductoController
-        public ActionResult Index()
+        public ActionResult Index(TokenResponseViewModel token)
         {
             List<ProductoViewModel> lista = ProductoHelper.GetProductos();
             return View(lista);
