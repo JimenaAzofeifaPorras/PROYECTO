@@ -10,6 +10,7 @@ using BackEnd.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using Entities.Entities;
+using System.Security.Cryptography;
 
 namespace Backend.Controllers
 {
@@ -51,6 +52,9 @@ namespace Backend.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                string HashedPassword = HashPassword(model.Contrasena);
+
                 var cliente = new Cliente
                 {
                     Nombre = model.Nombre,
@@ -58,7 +62,7 @@ namespace Backend.Controllers
                     SegundoApellido = model.SegundoApellido,
                     Correo = model.Correo,
                     NumeroTelefonico = model.NumeroTelefonico,
-                    Contrasena = model.Contrasena,
+                    Contrasena = HashedPassword,
                 };
 
                 _proyectoContext.Add(cliente);
@@ -104,9 +108,20 @@ namespace Backend.Controllers
             return tokenHandler.WriteToken(tokenConfig);
         }
 
-        private bool VerifyPassword(string providedPassword, string storedPassword)
+        private bool VerifyPassword(string password, string hashedPassword)
         {
-            return providedPassword == storedPassword;
+            string hashedInputPassword = HashPassword(password);
+            return hashedInputPassword == hashedPassword;
+        }
+
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            }
         }
     }
 }

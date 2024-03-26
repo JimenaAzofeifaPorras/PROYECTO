@@ -41,7 +41,7 @@ public partial class ProyectoContext : DbContext
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.NumeroTelefonico).HasMaxLength(20);
             entity.Property(e => e.SegundoApellido).HasMaxLength(50);
-            entity.Property(e => e.Contrasena).HasMaxLength(50);
+            entity.Property(e => e.Contrasena).HasMaxLength(64);
         });
 
         modelBuilder.Entity<Empleado>(entity =>

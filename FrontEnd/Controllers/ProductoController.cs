@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    [Authorize]
+    
     public class ProductoController : Controller
     {
         IProductoHelper ProductoHelper;
@@ -18,12 +18,13 @@ namespace FrontEnd.Controllers
 
 
         // GET: ProductoController
-        public ActionResult Index(TokenResponseViewModel token)
+        public ActionResult Index()
         {
             List<ProductoViewModel> lista = ProductoHelper.GetProductos();
             return View(lista);
         }
 
+        [Authorize]
         // GET: ProductoController/Details/5
         public ActionResult Details(int id)
         {

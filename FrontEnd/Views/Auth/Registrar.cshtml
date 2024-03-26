@@ -1,33 +1,71 @@
-﻿@page
+﻿
 @model FrontEnd.Models.ClienteViewModel
+@{
+    ViewData["Title"] = "Registrar";
+}
 
-<h1>Registro</h1>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
 
-<form method="post" asp-page-handler="Registrar">
-    <div>
-        <label for="Nombre">Nombre:</label>
-        <input type="text" id="Nombre" name="Nombre" required>
+                        <div class="mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Registrarse</h2>
+                            <p class="text-white-50 mb-5">Por favor ingresa tus datos!</p>
+
+                            <form method="post" asp-page-handler="Registrar">
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="Nombre" id="Nombre" placeholder="Nombre">
+                                    <label asp-for="Nombre" class="text-black">Nombre</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="Apellido" id="Apellido" placeholder="Apellido">
+                                    <label asp-for="Apellido" class="text-black">Apellido</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="SegundoApellido" id="SegundoApellido" placeholder="Apellido">
+                                    <label asp-for="SegundoApellido" class="text-black">Segundo Apellido</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" asp-for="Correo" id="Correo" placeholder="nombre@example.com">
+                                    <label asp-for="Correo" class="text-black">Correo</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="NumeroTelefonico" id="NumeroTelefonico" placeholder="Telefono">
+                                    <label asp-for="NumeroTelefonico" class="text-black">Telefono</label>
+                                </div>
+                                
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" asp-for="Contrasena" id="Contrasena" placeholder="Password">
+                                    <label asp-for="Contrasena" class="text-black">Contraseña</label>
+                                </div>
+
+                                <div asp-validation-summary="All" class="text-danger"></div>
+
+                                <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Registrarse</button>
+
+                            </form>
+
+                        </div>
+
+                        <div>
+                            <p class="mb-0">
+                                Ya tienes una cuenta? <a asp-controller="Auth" asp-action="Login" class="text-white-50 fw-bold">Iniciar sesión</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="Apellido">Apellido:</label>
-        <input type="text" id="Apellido" name="Apellido" required>
-    </div>
-    <div>
-        <label for="SegundoApellido">Segundo Apellido:</label>
-        <input type="text" id="SegundoApellido" name="SegundoApellido" required>
-    </div>
-    <div>
-        <label for="Correo">Correo:</label>
-        <input type="email" id="Correo" name="Correo" required>
-    </div>
-    <div>
-        <label for="NumeroTelefonico">Telefono:</label>
-        <input type="text" id="NumeroTelefonico" name="NumeroTelefonico" required>
-    </div>
-    <div>
-        <label for="Contrasena">Contraseña:</label>
-        <input type="password" id="Contrasena" name="Contrasena" required>
-    </div>
-    <button type="submit">Registrarse</button>
-</form>
+</section>
 

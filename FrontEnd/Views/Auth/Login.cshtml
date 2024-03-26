@@ -1,22 +1,50 @@
-﻿@page
-@model FrontEnd.Models.IniciarSesionViewModel;
+﻿@model FrontEnd.Models.IniciarSesionViewModel;
+@{
+    ViewData["Title"] = "Login";
+}
 
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-<h1>Iniciar sesión</h1>
+            <div class="mt-md-4 pb-5">
 
-<form method="post" asp-page-handler="Login">
-    <div>
-        <label for="Correo">Correo:</label>
-        <input type="text" id="Email" name="Correo" required>
+              <h2 class="fw-bold mb-2 text-uppercase">Iniciar Sesión</h2>
+              <p class="text-white-50 mb-5">Por favor ingresa tus credenciales!</p>
+
+              <form method="post" asp-page-handler="Login">
+                                
+
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" asp-for="Correo" id="Correo" placeholder="nombre@example.com">
+                                    <label asp-for="Correo" class="text-black">Correo</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" asp-for="Contrasena" id="Contrasena" placeholder="Password">
+                                    <label asp-for="Contrasena" class="text-black">Contraseña</label>
+                                </div>
+
+                                <div asp-validation-summary="All" class="text-danger"></div>
+
+              <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Login</button>
+
+              </form>
+
+            </div>
+
+            <div>
+                            <p class="mb-0">
+                                No tienes una cuenta? <a asp-controller="Auth" asp-action="Registrar" class="text-white-50 fw-bold">Crear una cuenta</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-        <label for="Contrasena">Contraseña:</label>
-        <input type="password" id="Password" name="Contrasena" required>
-    </div>
-    <button type="submit">Iniciar sesión</button>
-</form>
-
-<div>
-    <p>¿No tienes una cuenta?</p>
-    <a asp-controller="Auth" asp-action="Registrar">Crear una cuenta</a>
-</div>
+  </div>
+</section>

@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.JSInterop;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace FrontEnd.Controllers
 {
@@ -29,30 +31,31 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(IniciarSesionViewModel model)
         {
-            var backendUrl = _configuration.GetValue<string>("BackEnd:Url");
 
-            var response = await _httpClient.PostAsJsonAsync($"{backendUrl}/api/Auth/Login", model);
-
-            if (response.IsSuccessStatusCode)
+            if (ModelState.IsValid)
             {
-                var tokenResponse = await response.Content.ReadAsStringAsync();
-                var token = JsonConvert.DeserializeObject<TokenResponseViewModel>(tokenResponse);
+                var backendUrl = _configuration.GetValue<string>("BackEnd:Url");
 
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Token);
+                var response = await _httpClient.PostAsJsonAsync($"{backendUrl}/api/Auth/Login", model);
 
-                if (!HttpContext.Request.Path.StartsWithSegments("/_blazor"))
+                if (response.IsSuccessStatusCode)
                 {
-                    // Guarda el token en el localStorage utilizando JavaScript
-                    await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "token", token.Token);
-                }
+                    var tokenResponse = await response.Content.ReadAsStringAsync();
+                    var token = JsonConvert.DeserializeObject<TokenResponseViewModel>(tokenResponse);
 
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
+                    Response.Cookies.Append("jwt", token.Token, new CookieOptions
+                    {
+                        HttpOnly = true, // Marca la cookie como httpOnly
+                        Secure = false, // Establece la cookie como segura (requiere HTTPS)
+                        SameSite = SameSiteMode.Strict // Establece SameSite a Strict para mitigar ataques CSRF
+                    });
+
+                    return RedirectToAction("Index", "Home");
+                }
+            } 
                 ModelState.AddModelError(string.Empty, "Error de inicio de sesión. Por favor, inténtalo de nuevo.");
                 return View(model);
-            }
+            
         }
 
         [HttpGet]
@@ -64,20 +67,33 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> Registrar(ClienteViewModel model)
         {
-            var backendUrl = _configuration.GetValue<string>("BackEnd:Url");
 
-            var response = await _httpClient.PostAsJsonAsync($"{backendUrl}/api/Auth/Registrar", model);
-
-            if (response.IsSuccessStatusCode)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                var backendUrl = _configuration.GetValue<string>("BackEnd:Url");
+
+                var response = await _httpClient.PostAsJsonAsync($"{backendUrl}/api/Auth/Registrar", model);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
-            {
+            
                 // Si hubo un error, mostrar un mensaje de error
                 ModelState.AddModelError(string.Empty, "Error de registro. Por favor, inténtalo de nuevo.");
                 return View(model);
-            }
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            // Aquí puedes realizar cualquier limpieza necesaria, como eliminar cookies o tokens de autenticación
+            // Por ejemplo, si estás utilizando JWT, podrías invalidar el token actual
+
+            // Luego, redirige al usuario a la página de inicio de sesión
+            return RedirectToAction("Login", "Auth");
         }
     }
 }

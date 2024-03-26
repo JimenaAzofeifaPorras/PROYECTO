@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - FrontEnd</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Login-registro.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FrontEnd.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -37,6 +38,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Servicio" asp-action="Index">Servicios</a>
                         </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <!-- Mostrar el botón de cerrar sesión solo si el usuario está autenticado -->
+                            <form method="post" asp-controller="Auth" asp-action="Logout">
+                                <button type="submit" class="btn btn-link">Cerrar sesión</button>
+                            </form>
+                        }
                     </ul>
                 </div>
             </div>
