@@ -66,7 +66,7 @@ namespace Backend.Controllers
                 };
 
                 _proyectoContext.Add(cliente);
-                _proyectoContext.SaveChanges();
+                       _proyectoContext.SaveChanges();
 
                 // Luego, puedes generar un token JWT para el cliente registrado
                 var token = GenerateJwtToken(model.Correo);
