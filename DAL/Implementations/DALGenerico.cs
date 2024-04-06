@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public class DALGenericoImpl<TEntity> : IDALGenerico<TEntity> where TEntity : class
+    public class DALGenerico<TEntity> : IDALGenerico<TEntity> where TEntity : class
     {
 
         protected readonly ProyectoContext _Context;
 
-        public DALGenericoImpl(ProyectoContext proyectoContext)
+        public DALGenerico(ProyectoContext proyectoContext)
         {
             _Context = proyectoContext;
         }
