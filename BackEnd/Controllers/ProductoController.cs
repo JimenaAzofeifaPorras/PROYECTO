@@ -9,7 +9,6 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProductoController : ControllerBase
     {
         IProductoService ProductoService;
@@ -28,6 +27,7 @@ namespace BackEnd.Controllers
 
         // GET api/<ProductoController>/5
         [HttpGet("{id}")]
+        [Authorize]
         public ProductoModel Get(int id)
         {
             return ProductoService.GetById(id);
@@ -35,6 +35,7 @@ namespace BackEnd.Controllers
 
         // POST api/<ProductoController>
         [HttpPost]
+        [Authorize]
         public string Post([FromBody] ProductoModel producto)
         {
             var result = ProductoService.AddProducto(producto);
@@ -49,6 +50,7 @@ namespace BackEnd.Controllers
 
         // PUT api/<ProductoController>/5
         [HttpPut]
+        [Authorize]
         public string Put([FromBody] ProductoModel producto)
         {
             var result = ProductoService.UpdateProducto(producto);
@@ -62,6 +64,7 @@ namespace BackEnd.Controllers
 
         // DELETE api/<ProductoController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public string Delete(int id)
         {
 

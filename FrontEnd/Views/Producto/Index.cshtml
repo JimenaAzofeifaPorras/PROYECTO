@@ -3,52 +3,44 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<br></br>
 <h1>Index</h1>
-
+<br></br>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdProducto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="container">
+    <div class="row">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdProducto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IdProducto })
-                </td>
-            </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="row -flex align-items-center">
+                            @*<img src="..." class="card-img-top" alt="..."> AQUI DEBERA QUE IR LO DE IMAGENES*@
+                            <div class="col">
+                                <h5 class="card-title">@Html.DisplayNameFor(modelItem => item.Nombre)</h5>
+                            </div>
+                            <div class="col">
+                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Nombre)</h6>
+                            </div>
+                        </div>
+                        <div class="row -flex align-items-center">
+                            <div class="col">
+                                <h5 class="card-title ">@Html.DisplayFor(modelItem => item.Estado)</h5>
+                            </div>
+                            <div class="col">
+                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Estado)</h6>
+                            </div>
+                        </div>
+                        <p class="card-text">₡ @Html.DisplayFor(modelItem => item.Precio)</p>
+                        @Html.ActionLink("Details", "Details", new { id = item.IdProducto }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Details", new { id = item.IdProducto }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Details", "Details", new { id = item.IdProducto }, new { @class = "btn btn-danger" })
+                        @* Nose porque pero el llamar a las acciones me da error, me devievle que en el helper hay problemas para obtener el id *@
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
