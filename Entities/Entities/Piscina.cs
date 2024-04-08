@@ -5,7 +5,7 @@ namespace Entities.Entities;
 
 public partial class Piscina
 {
-    public int Id { get; set; }
+    public int PiscinaId { get; set; }
     public int ClienteId { get; set; }
     public Cliente Cliente { get; set; }
     public int? ServicioId { get; set; }
