@@ -27,7 +27,6 @@ namespace BackEnd.Controllers
 
         // GET api/<ProductoController>/5
         [HttpGet("{id}")]
-        [Authorize]
         public ProductoModel Get(int id)
         {
             return ProductoService.GetById(id);
