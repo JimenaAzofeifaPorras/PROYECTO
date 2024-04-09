@@ -15,6 +15,7 @@ namespace DAL.Implementations
         public IEmpleadoDAL _empleadoDAL { get; }
         public IProductoDAL _productoDAL { get; }
         public IServicioDAL _servicioDAL { get; }
+        public IPiscinaDAL _piscinaDAL { get; }
 
         private readonly ProyectoContext _context;
 
@@ -22,7 +23,8 @@ namespace DAL.Implementations
                                 IClienteDAL clienteDAL,
                                 IEmpleadoDAL empleadoDAL,
                                 IProductoDAL productoDAL,
-                                IServicioDAL servicioDAL
+                                IServicioDAL servicioDAL,
+                                IPiscinaDAL piscinaDAL
                                 )
         {
             _context = proyectoContext;
@@ -30,6 +32,7 @@ namespace DAL.Implementations
             _empleadoDAL = empleadoDAL;
             _productoDAL = productoDAL;
             _servicioDAL = servicioDAL;
+            _piscinaDAL = piscinaDAL;
         }
 
         public bool Complete()
