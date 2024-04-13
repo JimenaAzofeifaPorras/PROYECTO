@@ -79,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.FechaHoraComentario)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.PiscinaId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.PiscinaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PiscinaId })
             </td>
         </tr>
 }

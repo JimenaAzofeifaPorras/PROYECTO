@@ -24,7 +24,8 @@ namespace FrontEnd.Controllers
         // GET: PiscinaController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            PiscinaViewModel piscina = PiscinaHelper.GetPiscina(id);
+            return View(piscina);
         }
 
         // GET: PiscinaController/Create
@@ -36,10 +37,11 @@ namespace FrontEnd.Controllers
         // POST: PiscinaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PiscinaViewModel piscina)
         {
             try
             {
+                PiscinaHelper.AddPiscina(piscina);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,16 +53,18 @@ namespace FrontEnd.Controllers
         // GET: PiscinaController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            PiscinaViewModel piscina = PiscinaHelper.GetPiscina(id);
+            return View(piscina);
         }
 
         // POST: PiscinaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(PiscinaViewModel piscina)
         {
             try
             {
+                PiscinaHelper.UpdatePiscina(piscina);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,16 +76,18 @@ namespace FrontEnd.Controllers
         // GET: PiscinaController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            PiscinaViewModel piscina = PiscinaHelper.GetPiscina(id);
+            return View(piscina);
         }
 
         // POST: PiscinaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(PiscinaViewModel piscina)
         {
             try
             {
+                PiscinaHelper.DeletePiscina(piscina.PiscinaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
