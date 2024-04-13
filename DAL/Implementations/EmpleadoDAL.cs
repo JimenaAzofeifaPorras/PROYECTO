@@ -51,8 +51,74 @@ namespace DAL.Implementations
 
             return empleados;
         }
+        public bool Add(Empleado entity)
+        {
+            try
+            {
+
+                string sql = "exec [dbo].[sp_AddEmpleado] @Nombre, @Apellido, @SegundoApellido, @Correo, @NumeroTelefonico, @Contrasena";
+
+                var param = new SqlParameter[]
+                {
+                    new SqlParameter()
+                    {
+                        ParameterName= "@Nombre",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.Nombre
+                    },
+                    new SqlParameter()
+                    {
+                        ParameterName= "@Apellido",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.Apellido
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName= "@SegundoApellido",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.SegundoApellido
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName= "@Correo",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.Correo
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName= "@NumeroTelefonico",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.NumeroTelefonico
+                    },
+
+                    new SqlParameter()
+                    {
+                        ParameterName= "@Contrasena",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value=entity.Contrasena
+                    }
+
+                };
 
 
+                _Context.Database.ExecuteSqlRaw(sql, param);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
 
 
     }

@@ -24,7 +24,6 @@ namespace FrontEnd.Controllers
             return View(lista);
         }
 
-        [Authorize]
         // GET: ProductoController/Details/5
         public ActionResult Details(int id)
         {
