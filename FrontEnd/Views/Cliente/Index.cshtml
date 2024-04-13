@@ -6,11 +6,11 @@
 <br></br>
 <h1>Menu de clientes registrados</h1>
 <br></br>
-<!--
+
     <p>
-        <a asp-action="Create" class="btn btn-primary">Create New</a>
+        <a asp-action="Create" class="btn btn-primary">Create un cliente</a>
     </p>
--->
+
 <div class="table-responsive">
     <table class="table">
         <thead class="table-dark vertical-align: middle;">
@@ -27,12 +27,12 @@
                 <th>
                     Segundo Apellido
                 </th>
-                <th>
+                @*<th>
                     Correo
                 </th>
                 <th>
                     Numero Telefonico
-                </th>
+                </th>*@
                 <th>
                     Accion
                 </th>
@@ -54,12 +54,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.SegundoApellido)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Correo)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NumeroTelefonico)
-                    </td>
+                    </td>*@
                     <td style="padding-right: 5px">
                         @Html.ActionLink("Edit", "Edit", new { id = item.IdCliente }, new { @class = "btn btn-warning" })
                         @Html.ActionLink("Details", "Details", new { id = item.IdCliente }, new { @class = "btn btn-success" })
