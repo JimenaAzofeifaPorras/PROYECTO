@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public class ServicioDALImpl : DALGenericoImpl<Servicio>, IServicioDAL
+    public class ServicioDAL : DALGenerico<Servicio>, IServicioDAL
     {
         ProyectoContext _context;
 
-        public ServicioDALImpl(ProyectoContext context) : base(context)
+        public ServicioDAL(ProyectoContext context) : base(context)
         {
             _context = context;
         }
