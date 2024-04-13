@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BackEnd.Models;
+using BackEnd.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +10,13 @@ namespace BackEnd.Controllers
     [ApiController]
     public class PiscinaController : ControllerBase
     {
+        IPiscinaService PiscinaService;
+
+        public PiscinaController(IPiscinaService piscinaService) 
+        {
+            PiscinaService = piscinaService;        
+        }
+
         // GET: api/<PiscinaController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -17,9 +26,9 @@ namespace BackEnd.Controllers
 
         // GET api/<PiscinaController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public PiscinaModel Get(int id)
         {
-            return "value";
+            return PiscinaService.GetById(id);
         }
 
         // POST api/<PiscinaController>
