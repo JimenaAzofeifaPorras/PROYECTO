@@ -96,7 +96,6 @@ public partial class ProyectoContext : DbContext
             entity.Property(e => e.Nombre).HasMaxLength(100); // Ejemplo de configuración de propiedad
             entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)"); // Para almacenar imágenes en SQL Server
             entity.Property(e => e.Comentario).HasMaxLength(500); // Longitud máxima del comentario
-            entity.Property(e => e.EmpleadoComentario).HasMaxLength(100); // Longitud máxima del empleado comentario
 
             entity.HasOne(e => e.Cliente) // Relación con Cliente
                 .WithMany() // Uno a muchos
@@ -106,6 +105,11 @@ public partial class ProyectoContext : DbContext
             entity.HasOne(e => e.Servicio) // Relación con Servicio
                 .WithMany() // Uno a muchos
                 .HasForeignKey(e => e.ServicioId); // Clave foránea (opcional)
+                                                   
+            entity.HasOne(p => p.Empleado) // Relación con Empleado
+                .WithMany()
+                .HasForeignKey(p => p.EmpleadoId)
+                .IsRequired(false); // El empleado puede ser opcional en este caso
 
             // Restricciones de la base de datos adicionales o configuraciones de índices pueden agregarse aquí
         });

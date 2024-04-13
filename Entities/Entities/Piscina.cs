@@ -12,7 +12,8 @@ public partial class Piscina
     public Servicio Servicio { get; set; }
     public string Nombre { get; set; }
     public byte[] Imagen { get; set; }
+    public int? EmpleadoId { get; set; } // Id del empleado que realizó el comentario
+    public Empleado Empleado { get; set; } // Referencia a la entidad Empleado
     public string Comentario { get; set; }
-    public string EmpleadoComentario { get; set; }
     public DateTime? FechaHoraComentario { get; set; }
 }
