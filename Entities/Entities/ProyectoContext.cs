@@ -28,8 +28,6 @@ public partial class ProyectoContext : DbContext
     public virtual DbSet<sp_AddEmpleado_Result> Sp_AddEmpleado_Results { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-optionsBuilder.UseSqlServer("Server=DESKTOP-1FT6MM2;Database=PROYECTO;Integrated Security=True;Trusted_Connection=True; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -87,6 +85,33 @@ optionsBuilder.UseSqlServer("Server=DESKTOP-1FT6MM2;Database=PROYECTO;Integrated
             entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)");
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.Precio).HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<Piscina>(entity =>
+        {
+            entity.HasKey(e => e.PiscinaId).HasName("PK__Piscina__CEB9811974BB9210");
+            entity.ToTable("Piscina"); // Nombre de la tabla en la base de datos
+
+            entity.Property(e => e.PiscinaId).HasColumnName("PiscinaId");
+            entity.Property(e => e.Nombre).HasMaxLength(100); // Ejemplo de configuración de propiedad
+            entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)"); // Para almacenar imágenes en SQL Server
+            entity.Property(e => e.Comentario).HasMaxLength(500); // Longitud máxima del comentario
+
+            entity.HasOne(e => e.Cliente) // Relación con Cliente
+                .WithMany() // Uno a muchos
+                .HasForeignKey(e => e.ClienteId) // Clave foránea
+                .IsRequired(); // Requerido
+
+            entity.HasOne(e => e.Servicio) // Relación con Servicio
+                .WithMany() // Uno a muchos
+                .HasForeignKey(e => e.ServicioId); // Clave foránea (opcional)
+                                                   
+            entity.HasOne(p => p.Empleado) // Relación con Empleado
+                .WithMany()
+                .HasForeignKey(p => p.EmpleadoId)
+                .IsRequired(false); // El empleado puede ser opcional en este caso
+
+            // Restricciones de la base de datos adicionales o configuraciones de índices pueden agregarse aquí
         });
 
         OnModelCreatingPartial(modelBuilder);

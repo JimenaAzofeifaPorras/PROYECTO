@@ -4,6 +4,7 @@ using Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(ProyectoContext))]
-    partial class ProyectoContextModelSnapshot : ModelSnapshot
+    [Migration("20240408042248_NewTablePiscinav3")]
+    partial class NewTablePiscinav3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,8 +120,10 @@ namespace Entities.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("EmpleadoId")
-                        .HasColumnType("int");
+                    b.Property<string>("EmpleadoComentario")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("FechaHoraComentario")
                         .HasColumnType("datetime2");
@@ -139,8 +144,6 @@ namespace Entities.Migrations
                         .HasName("PK__Piscina__CEB9811974BB9210");
 
                     b.HasIndex("ClienteId");
-
-                    b.HasIndex("EmpleadoId");
 
                     b.HasIndex("ServicioId");
 
@@ -241,17 +244,11 @@ namespace Entities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Entities.Empleado", "Empleado")
-                        .WithMany()
-                        .HasForeignKey("EmpleadoId");
-
                     b.HasOne("Entities.Entities.Servicio", "Servicio")
                         .WithMany()
                         .HasForeignKey("ServicioId");
 
                     b.Navigation("Cliente");
-
-                    b.Navigation("Empleado");
 
                     b.Navigation("Servicio");
                 });
