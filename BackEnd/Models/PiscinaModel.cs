@@ -18,7 +18,7 @@ namespace BackEnd.Models
         public string? ServicioNombre { get; set; } // Para mostrar el nombre del servicio en lugar de solo su Id
 
         [Required(ErrorMessage = "El nombre es obligatorio")]
-        public required string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
         public byte[]? Imagen { get; set; }
 

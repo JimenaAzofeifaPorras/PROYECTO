@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+using BackEnd.Services.Implementations;
 using BackEnd.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +20,9 @@ namespace BackEnd.Controllers
 
         // GET: api/<PiscinaController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<PiscinaModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            return PiscinaService.GetPiscinas();
         }
 
         // GET api/<PiscinaController>/5
@@ -33,20 +34,45 @@ namespace BackEnd.Controllers
 
         // POST api/<PiscinaController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post([FromBody] PiscinaModel piscina)
         {
+            var result = PiscinaService.AddPiscina(piscina);
+
+            if (result)
+            {
+                return "Piscina Agregada Correctamente.";
+            }
+            return "Hubo un error al agregar la entidad.";
+
         }
 
         // PUT api/<PiscinaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public string Put([FromBody] PiscinaModel piscina)
         {
+            var result = PiscinaService.UpdatePiscina(piscina);
+
+            if (result)
+            {
+                return "Piscina Editada Correctamente.";
+            }
+            return "Hubo un error al editar la entidad.";
         }
 
         // DELETE api/<PiscinaController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
+
+            PiscinaModel piscina = new PiscinaModel { PiscinaId = id };
+            var result = PiscinaService.DeletePiscina(piscina);
+
+            if (result)
+            {
+                return "Piscina Eliminada Correctamente.";
+            }
+            return "Hubo un error al eliminar la entidad.";
+
         }
     }
 }
