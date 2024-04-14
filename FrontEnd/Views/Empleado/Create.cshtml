@@ -64,18 +64,18 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
+    </div>
+ </div>
+
+
+
+    <div style="padding-top: 20px">
+        <a asp-action="index" class="btn btn-secondary">Volver a la lista</a>
     </div>
 
-</div>
-
-
-<div style="padding-top: 20px">
-    <a asp-action="index" class="btn btn-secondary">Volver a la lista</a>
-</div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
     }
-}
