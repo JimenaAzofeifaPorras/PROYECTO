@@ -2,19 +2,14 @@
 using Entities.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public class EmpleadoDAL : DALGenerico<Empleado>, IEmpleadoDAL
+    public class EmpleadoDALImpl : DALGenerico<Empleado>, IEmpleadoDAL
     {
         ProyectoContext _context;
 
-        public EmpleadoDAL(ProyectoContext context) : base(context)
+        public EmpleadoDALImpl(ProyectoContext context) : base(context)
         {
             _context = context;
         }
@@ -51,6 +46,8 @@ namespace DAL.Implementations
 
             return empleados;
         }
+
+
         public bool Add(Empleado entity)
         {
             try
@@ -74,7 +71,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value=entity.Apellido
                     },
-
                     new SqlParameter()
                     {
                         ParameterName= "@SegundoApellido",
@@ -82,7 +78,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value=entity.SegundoApellido
                     },
-
                     new SqlParameter()
                     {
                         ParameterName= "@Correo",
@@ -90,7 +85,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value=entity.Correo
                     },
-
                     new SqlParameter()
                     {
                         ParameterName= "@NumeroTelefonico",
@@ -98,7 +92,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value=entity.NumeroTelefonico
                     },
-
                     new SqlParameter()
                     {
                         ParameterName= "@Contrasena",

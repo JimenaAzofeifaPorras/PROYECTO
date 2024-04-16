@@ -27,10 +27,10 @@
                     Segundo Apellido
                 </th>
                 @*<th>
-                    Correo
+                Correo
                 </th>
                 <th>
-                    Numero de Telefono
+                Numero de Telefono
                 </th>*@
                 <th>
                     Accion
@@ -54,11 +54,11 @@
                         @Html.DisplayFor(modelItem => item.SegundoApellido)
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.Correo)
-                    </td>*@
+                @Html.DisplayFor(modelItem => item.Correo)
+                </td>*@
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.NumeroTelefonico)
-                    </td>*@
+                @Html.DisplayFor(modelItem => item.NumeroTelefonico)
+                </td>*@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.IdEmpleado }, new { @class = "btn btn-warning" })
                         @Html.ActionLink("Details", "Details", new { id = item.IdEmpleado }, new { @class = "btn btn-success" })

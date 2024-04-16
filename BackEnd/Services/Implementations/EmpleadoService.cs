@@ -3,7 +3,6 @@ using BackEnd.Services.Interfaces;
 using DAL.Interfaces;
 using Entities.Entities;
 
-
 namespace BackEnd.Services.Implementations
 {
     public class EmpleadoService : IEmpleadoService
@@ -49,7 +48,7 @@ namespace BackEnd.Services.Implementations
                 SegundoApellido = empleado.SegundoApellido,
                 Correo = empleado.Correo,
                 NumeroTelefonico = empleado.NumeroTelefonico,
-                Contrasena= empleado.Contrasena
+                Contrasena = empleado.Contrasena
             };
         }
         public bool DeleteEmpleado(EmpleadoModel empleado)

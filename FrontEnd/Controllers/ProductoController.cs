@@ -24,7 +24,6 @@ namespace FrontEnd.Controllers
             return View(lista);
         }
 
-        
         // GET: ProductoController/Details/5
         public ActionResult Details(int id)
         {
@@ -41,10 +40,23 @@ namespace FrontEnd.Controllers
         // POST: ProductoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductoViewModel producto)
+        public ActionResult Create(ProductoViewModel producto, List<IFormFile> ListaImagenes)
         {
             try
             {
+                if (ListaImagenes.Count > 0)
+                {
+                    foreach (var item in ListaImagenes)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            item.CopyTo(ms);
+                            producto.Imagen = ms.ToArray();
+                        }
+                    }
+                }
+
+
                 ProductoHelper.AddProducto(producto);
                 return RedirectToAction("Index");
             }

@@ -36,7 +36,7 @@ namespace FrontEnd.Helpers.Implementations
                 IdProducto = producto.IdProducto,
                 Nombre = producto.Nombre,
                 Estado = producto.Estado,
-                Imagen = producto.Imagen,
+                Imagen = producto.Imagen ?? null,
                 Precio = producto.Precio
             };
         }
@@ -48,7 +48,7 @@ namespace FrontEnd.Helpers.Implementations
                 IdProducto = producto.IdProducto,
                 Nombre = producto.Nombre,
                 Estado = producto.Estado,
-                Imagen = producto.Imagen,
+                Imagen = producto.Imagen ?? null,
                 Precio = producto.Precio
             };
         }
