@@ -28,6 +28,18 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Precio)
         </dd>
+        @{
+            if (Model.Imagen != null)
+            {
 
+                string imageBase64 = Convert.ToBase64String(Model.Imagen);
+                string imageSrc = string.Format("data:ContentType = image/jpg;base64,{0}", imageBase64);
+
+                <img src="@imageSrc" width="500" height="500" />
+
+
+            }
+
+        }
     </dl>
 </div>

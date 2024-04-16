@@ -77,10 +77,21 @@ namespace FrontEnd.Controllers
         // POST: ProductoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductoViewModel producto)
+        public ActionResult Edit(ProductoViewModel producto, List<IFormFile> ListaImagenes)
         {
             try
             {
+                if (ListaImagenes.Count > 0)
+                {
+                    foreach (var item in ListaImagenes)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            item.CopyTo(ms);
+                            producto.Imagen = ms.ToArray();
+                        }
+                    }
+                }
                 ProductoHelper.UpdateProducto(producto);
                 return RedirectToAction("Index");
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Entities.Entities;
+namespace BackEnd.Entities;
 
 public partial class ProyectoContext : DbContext
 {
@@ -19,19 +19,17 @@ public partial class ProyectoContext : DbContext
 
     public virtual DbSet<Empleado> Empleados { get; set; }
 
+    public virtual DbSet<Piscina> Piscinas { get; set; }
+
     public virtual DbSet<Producto> Productos { get; set; }
 
     public virtual DbSet<Servicio> Servicios { get; set; }
 
-    public virtual DbSet<sp_GetAllEmpleados_Result> Sp_GetAllEmpleados_Results { get; set; }
-
-    public virtual DbSet<sp_AddEmpleado_Result> Sp_AddEmpleado_Results { get; set; }
-    public virtual DbSet<sp_AddServicio_Result> Sp_AddServicio_Results { get; set; }
-    public virtual DbSet<sp_GetAllServicios_Result> Sp_GetAllServicios_Results { get; set; }
+    public virtual DbSet<SpGetAllEmpleadosResult> SpGetAllEmpleadosResults { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-     => optionsBuilder.UseSqlServer("Server=DESKTOP-1FT6MM2;Database=PROYECTO;Integrated Security=True;Trusted_Connection=True; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=PROYECTO;Integrated Security=True;Trusted_Connection=True; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,11 +41,11 @@ public partial class ProyectoContext : DbContext
 
             entity.Property(e => e.IdCliente).HasColumnName("idCliente");
             entity.Property(e => e.Apellido).HasMaxLength(50);
+            entity.Property(e => e.Contrasena).HasMaxLength(64);
             entity.Property(e => e.Correo).HasMaxLength(100);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.NumeroTelefonico).HasMaxLength(20);
             entity.Property(e => e.SegundoApellido).HasMaxLength(50);
-            entity.Property(e => e.Contrasena).HasMaxLength(64);
         });
 
         modelBuilder.Entity<Empleado>(entity =>
@@ -58,11 +56,33 @@ public partial class ProyectoContext : DbContext
 
             entity.Property(e => e.IdEmpleado).HasColumnName("idEmpleado");
             entity.Property(e => e.Apellido).HasMaxLength(50);
+            entity.Property(e => e.Contrasena).HasMaxLength(50);
             entity.Property(e => e.Correo).HasMaxLength(100);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.NumeroTelefonico).HasMaxLength(20);
             entity.Property(e => e.SegundoApellido).HasMaxLength(50);
-            entity.Property(e => e.Contrasena).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Piscina>(entity =>
+        {
+            entity.HasKey(e => e.PiscinaId).HasName("PK__Piscina__CEB9811974BB9210");
+
+            entity.ToTable("Piscina");
+
+            entity.HasIndex(e => e.ClienteId, "IX_Piscina_ClienteId");
+
+            entity.HasIndex(e => e.EmpleadoId, "IX_Piscina_EmpleadoId");
+
+            entity.HasIndex(e => e.ServicioId, "IX_Piscina_ServicioId");
+
+            entity.Property(e => e.Comentario).HasMaxLength(500);
+            entity.Property(e => e.Nombre).HasMaxLength(100);
+
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Piscinas).HasForeignKey(d => d.ClienteId);
+
+            entity.HasOne(d => d.Empleado).WithMany(p => p.Piscinas).HasForeignKey(d => d.EmpleadoId);
+
+            entity.HasOne(d => d.Servicio).WithMany(p => p.Piscinas).HasForeignKey(d => d.ServicioId);
         });
 
         modelBuilder.Entity<Producto>(entity =>
@@ -73,7 +93,7 @@ public partial class ProyectoContext : DbContext
 
             entity.Property(e => e.IdProducto).HasColumnName("idProducto");
             entity.Property(e => e.Estado).HasMaxLength(20);
-            entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)");
+            entity.Property(e => e.Imagen).HasColumnType("image");
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.Precio).HasMaxLength(20);
         });
@@ -86,36 +106,15 @@ public partial class ProyectoContext : DbContext
 
             entity.Property(e => e.IdServicio).HasColumnName("idServicio");
             entity.Property(e => e.Estado).HasMaxLength(20);
-            entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)");
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.Precio).HasMaxLength(20);
         });
 
-        modelBuilder.Entity<Piscina>(entity =>
+        modelBuilder.Entity<SpGetAllEmpleadosResult>(entity =>
         {
-            entity.HasKey(e => e.PiscinaId).HasName("PK__Piscina__CEB9811974BB9210");
-            entity.ToTable("Piscina"); // Nombre de la tabla en la base de datos
-
-            entity.Property(e => e.PiscinaId).HasColumnName("PiscinaId");
-            entity.Property(e => e.Nombre).HasMaxLength(100); // Ejemplo de configuración de propiedad
-            entity.Property(e => e.Imagen).HasColumnType("varbinary(MAX)"); // Para almacenar imágenes en SQL Server
-            entity.Property(e => e.Comentario).HasMaxLength(500); // Longitud máxima del comentario
-
-            entity.HasOne(e => e.Cliente) // Relación con Cliente
-                .WithMany() // Uno a muchos
-                .HasForeignKey(e => e.ClienteId) // Clave foránea
-                .IsRequired(); // Requerido
-
-            entity.HasOne(e => e.Servicio) // Relación con Servicio
-                .WithMany() // Uno a muchos
-                .HasForeignKey(e => e.ServicioId); // Clave foránea (opcional)
-                                                   
-            entity.HasOne(p => p.Empleado) // Relación con Empleado
-                .WithMany()
-                .HasForeignKey(p => p.EmpleadoId)
-                .IsRequired(false); // El empleado puede ser opcional en este caso
-
-            // Restricciones de la base de datos adicionales o configuraciones de índices pueden agregarse aquí
+            entity
+                .HasNoKey()
+                .ToTable("Sp_GetAllEmpleados_Results");
         });
 
         OnModelCreatingPartial(modelBuilder);
