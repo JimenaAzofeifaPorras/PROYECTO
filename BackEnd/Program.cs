@@ -64,14 +64,16 @@ builder.Services.AddDbContext<ProyectoContext>();
 
 #region DI
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
-builder.Services.AddScoped<IClienteDAL, ClienteDALImpl>();
+builder.Services.AddScoped<IClienteDAL, ClienteDAL>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
-builder.Services.AddScoped<IEmpleadoDAL, EmpleadoDALImpl>();
+builder.Services.AddScoped<IEmpleadoDAL, EmpleadoDAL>();
 builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
-builder.Services.AddScoped<IProductoDAL, ProductoDALImpl>();
+builder.Services.AddScoped<IProductoDAL, ProductoDAL>();
 builder.Services.AddScoped<IProductoService, ProductoService>();
-builder.Services.AddScoped<IServicioDAL, ServicioDALImpl>();
+builder.Services.AddScoped<IServicioDAL, ServicioDAL>();
 builder.Services.AddScoped<IServicioService, ServicioService>();
+builder.Services.AddScoped<IPiscinaDAL, PiscinaDAL>();
+builder.Services.AddScoped<IPiscinaService, PiscinaService>();
 #endregion
 
 var app = builder.Build();
