@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+using Entities.Entities;
 
 namespace BackEnd.Services.Interfaces
 {
@@ -9,5 +10,7 @@ namespace BackEnd.Services.Interfaces
         bool AddServicio(ServicioModel servicio);
         bool UpdateServicio(ServicioModel servicio);
         bool DeleteServicio(ServicioModel servicio);
+
+
     }
 }

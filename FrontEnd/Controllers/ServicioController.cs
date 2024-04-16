@@ -38,10 +38,23 @@ namespace FrontEnd.Controllers
         // POST: ServicioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ServicioViewModel servicio)
+        public ActionResult Create(ServicioViewModel servicio, List<IFormFile> ListaImagenes)
         {
             try
             {
+                if (ListaImagenes.Count > 0)
+                {
+                    foreach (var item in ListaImagenes)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            item.CopyTo(ms);
+                            servicio.Imagen = ms.ToArray();
+                        }
+                    }
+                }
+
+
                 ServicioHelper.AddServicio(servicio);
                 return RedirectToAction("Index");
             }

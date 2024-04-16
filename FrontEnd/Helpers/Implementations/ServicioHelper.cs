@@ -1,4 +1,4 @@
-﻿using Entities.Entities;
+﻿using FrontEnd.ApiModels;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
 using Newtonsoft.Json;
@@ -37,7 +37,7 @@ namespace FrontEnd.Helpers.Implementations
                 Nombre = servicio.Nombre,
                 Precio = servicio.Precio,
                 Estado = servicio.Estado,
-                Imagen = servicio.Imagen
+                Imagen = servicio.Imagen ?? null
             };
         }
 
@@ -49,7 +49,7 @@ namespace FrontEnd.Helpers.Implementations
                 Nombre = servicio.Nombre,
                 Precio = servicio.Precio,
                 Estado = servicio.Estado,
-                Imagen = servicio.Imagen
+                Imagen = servicio.Imagen ?? null
             };
         }
 

@@ -53,7 +53,7 @@ namespace FrontEnd.Helpers.Implementations
                 SegundoApellido = cliente.SegundoApellido,
                 Correo = cliente.Correo,
                 NumeroTelefonico = cliente.NumeroTelefonico,
-                Contrasena =cliente.Contrasena
+                Contrasena = cliente.Contrasena
             };
         }
 

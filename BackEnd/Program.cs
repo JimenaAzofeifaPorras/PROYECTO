@@ -64,7 +64,7 @@ builder.Services.AddDbContext<ProyectoContext>();
 
 #region DI
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
-builder.Services.AddScoped<IClienteDAL, ClienteDAL>();
+builder.Services.AddScoped<IClienteDAL, ClienteDALImpl>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEmpleadoDAL, EmpleadoDALImpl>();
 builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
