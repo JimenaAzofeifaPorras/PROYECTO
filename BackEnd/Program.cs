@@ -72,6 +72,9 @@ builder.Services.AddScoped<IServicioDAL, ServicioDALImpl>();
 builder.Services.AddScoped<IServicioService, ServicioService>();
 builder.Services.AddScoped<IPiscinaDAL, PiscinaDAL>();
 builder.Services.AddScoped<IPiscinaService, PiscinaService>();
+builder.Services.AddScoped<ISolicitarProductoDAL, SolicitarProductoDALImpl>();
+builder.Services.AddScoped<ISolicitarProductoService, SolicitarProductoService>();
+
 #endregion
 
 var app = builder.Build();

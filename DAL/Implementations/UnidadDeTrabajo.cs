@@ -16,6 +16,7 @@ namespace DAL.Implementations
         public IProductoDAL _productoDAL { get; }
         public IServicioDAL _servicioDAL { get; }
         public IPiscinaDAL _piscinaDAL { get; }
+        public ISolicitarProductoDAL _solicitarProductoDAL { get; }
 
         private readonly ProyectoContext _context;
 
@@ -24,7 +25,9 @@ namespace DAL.Implementations
                                 IEmpleadoDAL empleadoDAL,
                                 IProductoDAL productoDAL,
                                 IServicioDAL servicioDAL,
-                                IPiscinaDAL piscinaDAL
+                                IPiscinaDAL piscinaDAL,
+                                ISolicitarProductoDAL solicitarProductoDAL
+
                                 )
         {
             _context = proyectoContext;

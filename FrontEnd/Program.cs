@@ -48,6 +48,7 @@ builder.Services.AddScoped<IEmpleadoHelper, EmpleadoHelper>();
 builder.Services.AddScoped<IProductoHelper, ProductoHelper>();
 builder.Services.AddScoped<IServicioHelper, ServicioHelper>();
 builder.Services.AddScoped<IPiscinaHelper, PiscinaHelper>();
+builder.Services.AddScoped<ISolicitarProductoHelper, SolicitarProductoHelper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

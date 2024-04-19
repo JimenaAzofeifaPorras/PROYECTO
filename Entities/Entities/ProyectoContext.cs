@@ -22,6 +22,8 @@ public partial class ProyectoContext : DbContext
     public virtual DbSet<Producto> Productos { get; set; }
 
     public virtual DbSet<Servicio> Servicios { get; set; }
+    public virtual DbSet<SolicitarServicio> SolicitarServicio { get; set; }
+    public virtual DbSet<SolicitarProducto> SolicitarProducto { get; set; }
 
     public virtual DbSet<sp_GetAllEmpleados_Result> Sp_GetAllEmpleados_Results { get; set; }
 
@@ -116,6 +118,40 @@ public partial class ProyectoContext : DbContext
                 .IsRequired(false); // El empleado puede ser opcional en este caso
 
             // Restricciones de la base de datos adicionales o configuraciones de índices pueden agregarse aquí
+        });
+
+        modelBuilder.Entity<SolicitarServicio>(entity =>
+        {
+            entity.HasKey(e => e.IdServicio).HasName("PK__Servicio__CEB9811974BB9210");
+
+            entity.ToTable("SolicitarServicio");
+
+            entity.Property(e => e.IdServicio).HasColumnName("IdServicio");
+            entity.Property(e => e.Fecha).HasColumnType("datetime");
+            entity.Property(e => e.Nombre).HasMaxLength(100);
+            entity.Property(e => e.NumeroTelefono).HasMaxLength(20);
+            entity.Property(e => e.Correo).HasMaxLength(100);
+            entity.Property(e => e.TamanoPiscina).HasMaxLength(50);
+            entity.Property(e => e.Direccion).HasMaxLength(255);
+            entity.Property(e => e.TipoServicio).HasMaxLength(50);
+            entity.Property(e => e.DescripcionProblema).HasColumnType("xml");
+        });
+
+        modelBuilder.Entity<SolicitarProducto>(entity =>
+        {
+            entity.HasKey(e => e.IdProducto).HasName("PK__Producto__CEB9811974BB9210");
+
+            entity.ToTable("SolicitarProducto");
+
+            entity.Property(e => e.IdProducto).HasColumnName("IdProducto");
+            entity.Property(e => e.Fecha).HasColumnType("datetime");
+            entity.Property(e => e.Nombre).HasMaxLength(100);
+            entity.Property(e => e.NumeroTelefono).HasMaxLength(20);
+            entity.Property(e => e.Correo).HasMaxLength(100);
+            entity.Property(e => e.TamanoPiscina).HasMaxLength(50);
+            entity.Property(e => e.Direccion).HasMaxLength(255);
+            entity.Property(e => e.TipoProducto).HasMaxLength(50);
+            entity.Property(e => e.DescripcionProblema).HasColumnType("xml");
         });
 
         OnModelCreatingPartial(modelBuilder);

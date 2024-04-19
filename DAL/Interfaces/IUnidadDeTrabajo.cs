@@ -16,6 +16,7 @@ namespace DAL.Interfaces
 
         IServicioDAL _servicioDAL { get; }
         IPiscinaDAL _piscinaDAL { get; }
+        ISolicitarProductoDAL _solicitarProductoDAL { get; }
         bool Complete();
     }
 }

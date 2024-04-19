@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FrontEnd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Login-registro.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FrontEnd.styles.css" asp-append-version="true" />
+</head>
+<body style="background-color:whitesmoke">
+    <div class="">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="padding-right: 3px; padding-left:3px;">
+            <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">
+                <div style="color: blue" class="text-center">
+                    <h3>Piscinas</h3>
+                </div>
+            </a>
+            @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>*@
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 flex-grow-1">
+            </ul>
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-md-3 text-end d-flex justify-content-end">
+                    <!-- Mostrar el botón de cerrar sesión solo si el usuario está autenticado -->
+                    <form method="post" asp-controller="Auth" asp-action="Logout">
+                        <button type="submit" class="btn btn-outline-primary me-2">Cerrar sesión</button>
+                    </form>
+                    <span>
+                        @User.Identity.Name
+                    </span>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-3 text-end d-flex justify-content-end">
+                </div>
+            }
+        </header>
+    </div>
+    <div class="container">
+        <main role="main" class="pb-2">
+            <div>
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - FrontEnd - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <br /><a asp-area="" asp-controller="Home" asp-action="Preguntas">Preguntas y Respuestas</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
