@@ -1,28 +1,27 @@
-using FrontEnd.Models;
+﻿using FrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FrontEnd.Controllers
 {
-    public class HomeController : Controller
+    public class GalleryController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<GalleryController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public GalleryController(ILogger<GalleryController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Piscinas()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult Servicios()
         {
             return View();
         }
-        public IActionResult Preguntas()
+        public IActionResult Productos()
         {
             return View();
         }
