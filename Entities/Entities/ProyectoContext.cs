@@ -24,7 +24,6 @@ public partial class ProyectoContext : DbContext
     public virtual DbSet<Servicio> Servicios { get; set; }
     public virtual DbSet<SolicitarServicio> SolicitarServicio { get; set; }
     public virtual DbSet<SolicitarProducto> SolicitarProducto { get; set; }
-
     public virtual DbSet<sp_GetAllEmpleados_Result> Sp_GetAllEmpleados_Results { get; set; }
 
     public virtual DbSet<sp_AddEmpleado_Result> Sp_AddEmpleado_Results { get; set; }

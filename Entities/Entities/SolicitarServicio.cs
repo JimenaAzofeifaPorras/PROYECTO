@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Entities
 {
-    internal class SolicitarServicio
+    public class SolicitarServicio
     {
         public int IdServicio { get; set; }
         public DateTime Fecha { get; set; }

@@ -36,6 +36,7 @@ namespace DAL.Implementations
             _productoDAL = productoDAL;
             _servicioDAL = servicioDAL;
             _piscinaDAL = piscinaDAL;
+            _solicitarProductoDAL = solicitarProductoDAL;
         }
 
         public bool Complete()

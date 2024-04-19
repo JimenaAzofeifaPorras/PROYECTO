@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 <br></br>
-<h1>Menu de solicitudes registradas</h1>
+<h1>Menu de solicitudes para productos</h1>
 <br></br>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create un cliente</a>
+    <a asp-action="Solicitud de Productos" class="btn btn-primary">Crear solicitud</a>
 </p>
 
 <div class="table-responsive">
@@ -50,6 +50,9 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.IdProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
