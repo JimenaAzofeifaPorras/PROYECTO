@@ -74,6 +74,8 @@ builder.Services.AddScoped<IPiscinaDAL, PiscinaDAL>();
 builder.Services.AddScoped<IPiscinaService, PiscinaService>();
 builder.Services.AddScoped<ISolicitarProductoDAL, SolicitarProductoDALImpl>();
 builder.Services.AddScoped<ISolicitarProductoService, SolicitarProductoService>();
+builder.Services.AddScoped<ISolicitarServicioDAL, SolicitarServicioDALImpl>();
+builder.Services.AddScoped<ISolicitarServicioService, SolicitarServicioService>();
 
 #endregion
 

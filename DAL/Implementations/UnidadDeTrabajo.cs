@@ -17,6 +17,7 @@ namespace DAL.Implementations
         public IServicioDAL _servicioDAL { get; }
         public IPiscinaDAL _piscinaDAL { get; }
         public ISolicitarProductoDAL _solicitarProductoDAL { get; }
+        public ISolicitarServicioDAL _solicitarServicioDAL { get; }
 
         private readonly ProyectoContext _context;
 
@@ -26,7 +27,8 @@ namespace DAL.Implementations
                                 IProductoDAL productoDAL,
                                 IServicioDAL servicioDAL,
                                 IPiscinaDAL piscinaDAL,
-                                ISolicitarProductoDAL solicitarProductoDAL
+                                ISolicitarProductoDAL solicitarProductoDAL,
+                                ISolicitarServicioDAL solicitarServicioDAL
 
                                 )
         {
@@ -37,6 +39,7 @@ namespace DAL.Implementations
             _servicioDAL = servicioDAL;
             _piscinaDAL = piscinaDAL;
             _solicitarProductoDAL = solicitarProductoDAL;
+            _solicitarServicioDAL = solicitarServicioDAL;
         }
 
         public bool Complete()
