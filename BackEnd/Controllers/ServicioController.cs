@@ -1,6 +1,9 @@
 ﻿using BackEnd.Models;
 using BackEnd.Services.Interfaces;
+using Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BackEnd.Controllers
 {
@@ -10,34 +13,34 @@ namespace BackEnd.Controllers
     {
         IServicioService ServicioService;
 
-        public ServicioController(IServicioService servicioService)
+        public ServicioController(IServicioService categoryService)
         {
-            ServicioService = servicioService;
+            ServicioService = categoryService;
         }
 
         // GET: api/<ServicioController>
         [HttpGet]
-        public IEnumerable<ServicioModel> GetServicios()
+        public IEnumerable<ServicioModel> Get()
         {
             return ServicioService.GetServicios();
         }
 
         // GET api/<ServicioController>/5
         [HttpGet("{id}")]
-        public ServicioModel GetServicios(int id)
+        public ServicioModel Get(int id)
         {
             return ServicioService.GetById(id);
         }
 
         // POST api/<ServicioController>
         [HttpPost]
-        public string Post([FromBody] ServicioModel servicio)
+        public string Post([FromBody] ServicioModel category)
         {
-            var result = ServicioService.AddServicio(servicio);
+            var result = ServicioService.AddServicio(category);
 
             if (result)
             {
-                return "Servicio Agregada Correctamente.";
+                return "Categoría Agregada Correctamente.";
             }
             return "Hubo un error al agregar  la entidad.";
 
@@ -45,13 +48,13 @@ namespace BackEnd.Controllers
 
         // PUT api/<ServicioController>/5
         [HttpPut]
-        public string Put([FromBody] ServicioModel servicio)
+        public string Put([FromBody] ServicioModel category)
         {
-            var result = ServicioService.UpdateServicio(servicio);
+            var result = ServicioService.UpdateServicio(category);
 
             if (result)
             {
-                return "Servicio Editada Correctamente.";
+                return "Categoría Editada Correctamente.";
             }
             return "Hubo un error al editar  la entidad.";
         }
@@ -61,12 +64,12 @@ namespace BackEnd.Controllers
         public string Delete(int id)
         {
 
-            ServicioModel servicio = new ServicioModel { IdServicio = id };
-            var result = ServicioService.DeleteServicio(servicio);
+            ServicioModel category = new ServicioModel { IdServicio = id };
+            var result = ServicioService.DeleteServicio(category);
 
             if (result)
             {
-                return "Servicio Eliminada Correctamente.";
+                return "Categoría Eliminada Correctamente.";
             }
             return "Hubo un error al eliminar  la entidad.";
 
