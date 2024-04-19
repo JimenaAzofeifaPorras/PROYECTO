@@ -1,4 +1,4 @@
-﻿@model FrontEnd.Models.SolicitarProductoViewModel
+﻿@model FrontEnd.Models.SolicitarServicioViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -19,52 +19,52 @@
                             <input asp-for="Fecha" class="form-control" />
                             <span asp-validation-for="Fecha" class="text-danger"></span>
                         </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label asp-for="Nombre" class="control-label"></label>
-                            <input asp-for="Nombre" class="form-control" />
-                            <span asp-validation-for="Nombre" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 8px">
-                        <div class="col">
+                        <div class="row">
                             <div class="form-group">
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 8px">
+                            <div class="col">
+                                <div class="form-group">
                                     <label asp-for="NumeroTelefono" class="control-label"></label>
                                     <input asp-for="NumeroTelefono" class="form-control" />
                                     <span asp-validation-for="NumeroTelefono" class="text-danger"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
+                            <div class="col">
+                                <div class="form-group">
                                     <label asp-for="Correo" class="control-label"></label>
                                     <input asp-for="Correo" class="form-control" />
                                     <span asp-validation-for="Correo" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
                             <label asp-for="TamanoPiscina" class="control-label"></label>
                             <input asp-for="TamanoPiscina" class="form-control" />
                             <span asp-validation-for="TamanoPiscina" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label asp-for="Direccion" class="control-label"></label>
                             <input asp-for="Direccion" class="form-control" />
                             <span asp-validation-for="Direccion" class="text-danger"></span>
-                    </div>
+                        </div>
                         <div class="form-group">
-                            <label asp-for="TipoProducto" class="control-label"></label>
-                            <input asp-for="TipoProducto" class="form-control" />
-                            <span asp-validation-for="TipoProducto" class="text-danger"></span>
+                            <label asp-for="TipoServicio" class="control-label"></label>
+                            <input asp-for="TipoServicio" class="form-control" />
+                            <span asp-validation-for="TipoServicio" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="DescripcionProblema" class="control-label"></label>
                             <input asp-for="DescripcionProblema" class="form-control" />
                             <span asp-validation-for="DescripcionProblema" class="text-danger"></span>
                         </div>
-                    <div class="form-group" style="padding-top: 15px">
+                        <div class="form-group" style="padding-top: 15px">
                             <input type="submit" value="Crear Solicitud" class="btn btn-primary" />
-                    </div>
+                        </div>
                 </form>
             </div>
         </div>

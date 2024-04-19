@@ -1,10 +1,10 @@
-﻿@model IEnumerable<FrontEnd.Models.SolicitarProductoViewModel>
+﻿@model IEnumerable<FrontEnd.Models.SolicitarServicioViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 <br></br>
-<h1>Menu de solicitudes para productos</h1>
+<h1>Menu de Solicitudes para Servicios</h1>
 <br></br>
 
 <p>
@@ -49,7 +49,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdProducto)
+                        @Html.DisplayFor(modelItem => item.IdServicio)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Fecha)
@@ -70,19 +70,13 @@
                         @Html.DisplayFor(modelItem => item.Direccion)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipoProducto)
+                        @Html.DisplayFor(modelItem => item.TipoServicio)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DescripcionProblema)
                     </td>
-                    @*<td>
-                @Html.DisplayFor(modelItem => item.Correo)
-                </td>
-                <td>
-                @Html.DisplayFor(modelItem => item.NumeroTelefonico)
-                </td>*@
                     <td style="padding-right: 5px">
-                        @Html.ActionLink("Details", "Details", new { id = item.IdProducto }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Details", "Details", new { id = item.IdServicio }, new { @class = "btn btn-success" })
                     </td>
                 </tr>
             }

@@ -1,0 +1,73 @@
+﻿@model FrontEnd.Models.SolicitarServicioViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>DETAILS</h1>
+<h4>Detalles de la Solicitud:</h4>
+<hr />
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Detalles de la Solicitud:</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    ID del Servicio:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IdServicio)
+                </dd>
+                <dt class="col-sm-3">
+                    Fecha:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Fecha)
+                </dd>
+                <dt class="col-sm-3">
+                    Numero de Telfono:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.NumeroTelefono)
+                </dd>
+                <dt class="col-sm-3">
+                    Correo:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Correo)
+                </dd>
+                <dt class="col-sm-3">
+                    Tamano de la Piscina:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TamanoPiscina)
+                </dd>
+                <dt class="col-sm-3">
+                    Direccion:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Direccion)
+                </dd>
+                <dt class="col-sm-3">
+                    Tipo del servicio:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TipoServicio)
+                </dd>
+                <dt class="col-sm-3">
+                    Descripcion:
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DescripcionProblema)
+                </dd>
+
+            </dl>
+
+        </div>
+    </div>
+    <hr />
+</div>
+<div class="mt-3" style="padding-top: 20px">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
