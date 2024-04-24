@@ -8,5 +8,6 @@ namespace BackEnd.Models
         public string? Correo { get; set; }
         [Required(ErrorMessage = "La contraseña es obligatorio")]
         public string? Contrasena { get; set; }
+        public string Roles {  get; set; }
     }
 }

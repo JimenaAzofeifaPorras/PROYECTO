@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using Entities.Entities;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace Backend.Controllers
 {
@@ -48,7 +49,7 @@ namespace Backend.Controllers
 
         [HttpPost]
         [Route("Registrar")]
-        public IActionResult Registrar([FromBody] ClienteModel model)
+        public IActionResult Registrar([FromBody] RegistroClienteModel model)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,7 @@ namespace Backend.Controllers
                     Correo = model.Correo,
                     NumeroTelefonico = model.NumeroTelefonico,
                     Contrasena = HashedPassword,
+                    Roles = "Cliente"
                 };
 
                 _proyectoContext.Add(cliente);

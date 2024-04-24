@@ -18,4 +18,6 @@ public partial class Cliente
     public string? NumeroTelefonico { get; set; }
 
     public string? Contrasena { get; set; }
+
+    public string? Roles { get; set; }
 }

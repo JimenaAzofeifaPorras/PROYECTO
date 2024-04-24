@@ -23,5 +23,7 @@ namespace FrontEnd.Models
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
         public string? Contrasena { get; set; }
+
     }
 }
+

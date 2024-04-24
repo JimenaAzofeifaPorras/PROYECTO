@@ -35,7 +35,8 @@ namespace BackEnd.Services.Implementations
                 SegundoApellido = cliente.SegundoApellido,
                 Correo = cliente.Correo,
                 NumeroTelefonico = cliente.NumeroTelefonico,
-                Contrasena = cliente.Contrasena
+                Contrasena = cliente.Contrasena,
+                Roles = cliente.Roles
             };
         }
 
@@ -49,7 +50,8 @@ namespace BackEnd.Services.Implementations
                 SegundoApellido = cliente.SegundoApellido,
                 Correo = cliente.Correo,
                 NumeroTelefonico = cliente.NumeroTelefonico,
-                Contrasena = cliente.Contrasena
+                Contrasena = cliente.Contrasena,
+                Roles = cliente.Roles
             };
         }
         public bool DeleteCliente(ClienteModel cliente)

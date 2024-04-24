@@ -230,7 +230,7 @@ namespace Entities.Migrations
                     b.Property<string>("SegundoApellido")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Sp_GetAllEmpleados_Results");
+                    b.ToTable("Sp_GetAllEmpleados_Results", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Entities.Piscina", b =>
